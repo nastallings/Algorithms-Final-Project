@@ -7,7 +7,6 @@ import edu.princeton.cs.algs4.LinearProbingHashST;
 public class Hashing_Test {
 
 	public static void main(String[] args) {
-        LinearProbingHashST<String, Integer> st = new LinearProbingHashST<String, Integer>();
         long[] timeToPut = new long[5];
         long[] timeToGet = new long[5];
         
@@ -24,11 +23,16 @@ public class Hashing_Test {
         
         //Run the test 4 times for the 4 different Dictionary sizes
         for(int i=1; i<=4; i++) {
+            LinearProbingHashST<String, Integer> st = new LinearProbingHashST<String, Integer>();
         	long start = System.currentTimeMillis();
+            System.out.println(start);
+
         	for(int j=0; j<English_Dict_Array.length/i; j++) {
         		st.put(English_Dict_Array[j], 1);
         	}
         	long finish= System.currentTimeMillis();
+            System.out.println(finish);
+
         	long TimeToCreate= finish-start;
         	timeToPut[i]=TimeToCreate;
    
@@ -49,7 +53,7 @@ public class Hashing_Test {
             LinearProbingHashST<String, Integer> StaticHash = new LinearProbingHashST<String, Integer>((int)mf[i]*321165);
             long start = System.currentTimeMillis();
         	for(int j=0; j<English_Dict_Array.length; j++) {
-        		st.put(English_Dict_Array[j], 1);
+        		StaticHash.put(English_Dict_Array[j], 1);
         	}
         	long finish= System.currentTimeMillis();
         	long TimeToCreate= finish-start;
@@ -57,16 +61,14 @@ public class Hashing_Test {
    
         	start = System.currentTimeMillis();
         	for(int j=0; j<English_Dict_Array.length; j++) {
-        		st.get(English_Dict_Array[j]);
+        		StaticHash.get(English_Dict_Array[j]);
         	}
         	finish= System.currentTimeMillis();        
         	long TimeToGet=finish-start;
         	timeToGetStatic[i]=TimeToGet;
         }
        
-        
-      System.out.println(English_Dict_Array.length);
-        
+              
         
 	}
 
