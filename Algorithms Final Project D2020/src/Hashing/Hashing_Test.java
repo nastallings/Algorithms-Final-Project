@@ -33,15 +33,17 @@ public class Hashing_Test {
     private static void timeToGetAndPutDynamic(int T) {
         double[] timeToPutLocal = new double[4];
         double[] timeToGetLocal = new double[4];
+        int[] size = new int[] {321165, 160582, 80291,  40145};  // dont want to waste time calculating this in the time frame
         for (int i = 0; i < 4; i++) {
             double[] tempTimeToPut = new double[T];
             double[] tempTimeToGet = new double[T];
-            System.gc();
-            for (int t = 0; t < T; t++) {
 
+            for (int t = 0; t < T; t++) {
+                System.gc();
+                int k = size[i];
                 LinearProbingHashST<String, Integer> st = new LinearProbingHashST<String, Integer>();
                 double start = System.currentTimeMillis();
-                for (int j = 0; j < (int) (English_Dict_Array.length / (Math.pow(2, i))); j++) {
+                for (int j = 0; j < k; j++) {
                     st.put(English_Dict_Array[j], 1);
                 }
                 double finish = System.currentTimeMillis();
@@ -50,7 +52,7 @@ public class Hashing_Test {
                 tempTimeToPut[t] = TimeToCreate;   // times to put (T in total)
 
                 double startGet = System.currentTimeMillis();
-                for (int j = 0; j < (int) (English_Dict_Array.length / (Math.pow(2, i))); j++) {
+                for (int j = 0; j < k; j++) {
                     st.get(English_Dict_Array[j]);
                 }
                 double finishGet = System.currentTimeMillis();
@@ -152,11 +154,11 @@ public class Hashing_Test {
             System.gc();
             LinearProbingHashST<String, Integer> st = new LinearProbingHashST<String, Integer>();
 
-
+            double start = System.currentTimeMillis();
             for (int j = 0; j < English_Dict_Array.length; j++) {
                 st.put(English_Dict_Array[j], 1);
             }
-            double start = System.currentTimeMillis();
+
             for (String word: English_Dict_Array){
                 st.delete(word);
             }
@@ -191,11 +193,13 @@ public class Hashing_Test {
             English_Dict_Array[index++] = myDict.readLine();
         }
 
-        int T = 100;     // Number of T independent tests
+
+        int T = 20;     // Number of T independent tests
 
         timeToGetAndPutDynamic(T);
         boolean deleteSuccessStatic = timeStatic(T);
         boolean deleteSuccess = timeToFillAndDelete(T);
+
         System.out.println("Time to Add And Get Dynamic");
         System.out.println("N	       Time to Put(ms)	Time to Get(ms)      SDPut(ms)    SDGet(ms)");
         for (int i = 0; i < 4; i++) {
