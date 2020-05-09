@@ -20,9 +20,9 @@ Simply need to run the main function in Hashing_Test.java
 ```
 
 
-### How to interpret the data:
+## How to interpret the data:
 
-## First Table: Represents the data for a "dynamically" resized LinearProbingHashST.
+### First Table: Represents the data for a "dynamically" resized LinearProbingHashST.
 ```
 N = Number of Words
 Time to Put(ms)	= Average time to put for a size N
@@ -32,7 +32,7 @@ SDGet(ms) = Standard deviation for 'get' for a size N
 
 ```
 
-## Second Table: Represents the data for a "fixed" resized LinearProbingHashST.
+### Second Table: Represents the data for a "fixed" resized LinearProbingHashST.
 *If incase all the values were not deleted successfully, a warning message will appear*
 ```
 mf = Multiplication Factor   
@@ -45,7 +45,7 @@ TimeToDelete = Average time to delete all the values in size mF
 DeleteSD = Standard deviation of time to delete
 ```
 
-## Third Table: Represents the data for adding and deleting all the values in the table (Size = 321165)
+### Third Table: Represents the data for adding and deleting all the values in the table (Size = 321165)
 *If incase all the values were not deleted successfully, a warning message will appear*
 ```
  TimeToPutAndDelete = Average time to put and delete all values
