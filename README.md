@@ -1,18 +1,24 @@
 # Hashing with open addressing
 ## Group: HT - Dialytellus
-### Final Project
+## Final Project
 
+
+### How to run
+```
 Simple need to run the main function in Hashing_Test.java
+```
 
-If code seems to run to slow, change:
+**If code seems to run to slow, change T in the main fuction to any other value < 20**
+```java
+ int T = 20;     
+ timeToGetAndPutDynamic(T);
+ timeToGetAndPutStatic(T);
 ```
-int T = 20;
-```
-to any other value < 20
+
 
 ### How to interpret the data:
-First Table represents the data for a "dynamiccally" resized LinearProbingHashST.
-This contains:
+**First Table represents the data for a "dynamiccally" resized LinearProbingHashST.
+This contains:**
 ```
 N	= Number of words
 Time to Put(ms)	= Time to put for a size N
@@ -22,7 +28,7 @@ SDGet(ms) = Standard deviation for 'get' for a size N
 
 ```
 
-Second Table represents the data for a "fixed" resized LinearProbingHashST.
+**Second Table represents the data for a "fixed" resized LinearProbingHashST.**
 ```
 mf = Multiplication Factor   
 Size = Initial size of table	        
