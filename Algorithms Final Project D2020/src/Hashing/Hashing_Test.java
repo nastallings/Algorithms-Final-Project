@@ -29,38 +29,38 @@ public class Hashing_Test {
         for (int i = 0; i < 4; i++) {
             double[] tempTimeToPut = new double[T];
             double[] tempTimeToGet = new double[T];
-
+            System.gc();
             for (int t = 0; t < T; t++) {
 
                 LinearProbingHashST<String, Integer> st = new LinearProbingHashST<String, Integer>();
-                double start = System.nanoTime();
+                double start = System.currentTimeMillis();
                 for (int j = 0; j < (int) (English_Dict_Array.length / (Math.pow(2, i))); j++) {
                     st.put(English_Dict_Array[j], 1);
                 }
-                double finish = System.nanoTime();
+                double finish = System.currentTimeMillis();
                 double TimeToCreate = (finish - start);
                 timeToPutLocal[i] += TimeToCreate;    // total time to put (Sum of the total time to put)
                 tempTimeToPut[t] = TimeToCreate;   // times to put (T in total)
 
-                double startGet = System.nanoTime();
+                double startGet = System.currentTimeMillis();
                 for (int j = 0; j < (int) (English_Dict_Array.length / (Math.pow(2, i))); j++) {
                     st.get(English_Dict_Array[j]);
                 }
-                double finishGet = System.nanoTime();
+                double finishGet = System.currentTimeMillis();
                 double TimeToGet = finishGet - startGet;
                 timeToGetLocal[i] += TimeToGet;
                 tempTimeToGet[t] = TimeToGet;
 
             }
-            timeToPut[i] = timeToPutLocal[i] / (double) (T*1000000);  //average in milliseconds
-            timeToGet[i] = timeToGetLocal[i] / (double) (T*1000000);  //average in milliseconds
+            timeToPut[i] = timeToPutLocal[i] / (double) T;  //average in milliseconds
+            timeToGet[i] = timeToGetLocal[i] / (double) T;  //average in milliseconds
 
             // for sd
             double sumOfDiffPut = 0.0;
             double sumOfDiffGet = 0.0;
             for (int k = 0; k < T; k++){  //loop T times for the summation
-                sumOfDiffPut += Math.pow((tempTimeToPut[k]/(double) 1000000) - timeToPut[i],2); //squaring the diff (x - mean)^2
-                sumOfDiffGet += Math.pow((tempTimeToGet[k]/(double) 1000000) - timeToGet[i],2); //squaring the diff
+                sumOfDiffPut += Math.pow(tempTimeToPut[k] - timeToPut[i],2); //squaring the diff (x - mean)^2
+                sumOfDiffGet += Math.pow(tempTimeToGet[k] - timeToGet[i],2); //squaring the diff
             }
             timeToPutSD[i] = Math.sqrt(sumOfDiffPut / (double) T) ;  // Divide by N-1 because it is sample
             timeToGetSD[i] = Math.sqrt(sumOfDiffGet / (double) T) ;  // Divide by N-1 because it is sample
@@ -78,35 +78,36 @@ public class Hashing_Test {
             double[] tempTimeToGet = new double[T];
 
             for (int t = 0; t < T; t++) {
+                System.gc();
                 LinearProbingHashST<String, Integer> StaticHash = new LinearProbingHashST<String, Integer>((int) (mf[i] * 321165));
-                double start = System.nanoTime();
+                double start = System.currentTimeMillis();
                 for (int j = 0; j < English_Dict_Array.length; j++) {
                     StaticHash.put(English_Dict_Array[j], 1);
                 }
-                double finish = System.nanoTime();
+                double finish = System.currentTimeMillis();
                 double TimeToCreate = finish - start;
                 timeToPutLocal[i] += TimeToCreate;    // total time to put (Sum of the total time to put)
                 tempTimeToPut[t] = TimeToCreate;   // times to put (T in total)
 
 
-                start = System.nanoTime();
+                start = System.currentTimeMillis();
                 for (int j = 0; j < English_Dict_Array.length; j++) {
                     StaticHash.get(English_Dict_Array[j]);
                 }
-                finish = System.nanoTime();
+                finish = System.currentTimeMillis();
                 double TimeToGet = finish - start;
                 timeToGetLocal[i] += TimeToGet;    // total time to put (Sum of the total time to put)
                 tempTimeToGet[t] = TimeToGet;   // times to put (T in total)
             }
-            timeToPutFixed[i] = timeToPutLocal[i] / (double) (T*1000000);  //average in milliseconds
-            timeToGetFixed[i] = timeToGetLocal[i] / (double) (T*1000000);  //average in milliseconds
+            timeToPutFixed[i] = timeToPutLocal[i] / (double) T;  //average in milliseconds
+            timeToGetFixed[i] = timeToGetLocal[i] / (double) T;  //average in milliseconds
 
             // for sd
             double sumOfDiffPut = 0.0;
             double sumOfDiffGet = 0.0;
             for (int k = 0; k < T; k++){  //loop T times for the summation
-                sumOfDiffPut += Math.pow((tempTimeToPut[k]/(double) 1000000) - timeToPutFixed[i],2); //squaring the diff (x - mean)^2
-                sumOfDiffGet += Math.pow((tempTimeToGet[k]/(double) 1000000) - timeToGetFixed[i],2); //squaring the diff
+                sumOfDiffPut += Math.pow(tempTimeToPut[k] - timeToPutFixed[i],2); //squaring the diff (x - mean)^2
+                sumOfDiffGet += Math.pow(tempTimeToGet[k] - timeToGetFixed[i],2); //squaring the diff
             }
             timeToPutFixedSD[i] = Math.sqrt(sumOfDiffPut / (double) T) ;  // Divide by N-1 because it is sample
             timeToGetFixedSD[i] = Math.sqrt(sumOfDiffGet / (double) T) ;  // Divide by N-1 because it is sample
