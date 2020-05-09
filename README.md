@@ -32,8 +32,8 @@ SDGet(ms) = Standard deviation for 'get' for a size N
 ```
 mf = Multiplication Factor   
 Size = Initial size of table	        
-Time to Put Constant Size(ms)	= Time to put for that mf with table size = Size
-Time to Get Constant Size(ms) = Time to get for that mf with table size = Size    
-SDPut(ms) = Standard deviation for 'put' for that mf with table size = Size
-SDGet(ms) = Standard deviation for 'get' for that mf with table size = Size
+Time to Put Constant Size(ms)	= Time to put for that mf 
+Time to Get Constant Size(ms) = Time to get for that mf   
+SDPut(ms) = Standard deviation for 'put' for that mf 
+SDGet(ms) = Standard deviation for 'get' for that mf 
 ```
