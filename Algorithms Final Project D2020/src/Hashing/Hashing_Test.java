@@ -126,7 +126,7 @@ public class Hashing_Test {
             English_Dict_Array[index++] = myDict.readLine();
         }
 
-        int T = 100;     // Number of T independent tests
+        int T = 20;     // Number of T independent tests
 
         timeToGetAndPutDynamic(T);
         timeToGetAndPutStatic(T);
