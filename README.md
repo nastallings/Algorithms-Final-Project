@@ -10,7 +10,7 @@ Simple need to run the main function in Hashing_Test.java
 
 **If code seems to run to slow, change T in the main fuction to any other value < 20**
 ```java
- int T = 20;     
+ int T = 100;     
  timeToGetAndPutDynamic(T);
  timeToGetAndPutStatic(T);
 ```
